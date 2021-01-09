@@ -2,8 +2,9 @@ package app.kathenas.launcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AppOpsManager;
 import android.app.Dialog;
@@ -29,6 +30,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import app.kathenas.launcher.adaptors.AllAppsAdaptor;
+import app.kathenas.launcher.framents.AllApps;
+import app.kathenas.launcher.framents.Personalise_Fragment;
 
 import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 import static android.app.AppOpsManager.MODE_ALLOWED;
@@ -48,6 +51,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
+        getInstalledApps();
+
         dialog = new Dialog(this);
 
         ConstraintLayout googleSearch = findViewById(R.id.googleSearch);
@@ -55,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         ConstraintLayout calenderInfo = findViewById(R.id.calenderInfo);
         TextView calenderInfoText = findViewById(R.id.calenderInfoText);
         ConstraintLayout newAppsInfo = findViewById(R.id.newAppsInfo);
+        ConstraintLayout personaliseLayout = findViewById(R.id.personaliseLayout);
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
@@ -65,18 +71,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         weatherInfo.setOnClickListener(this);
         calenderInfo.setOnClickListener(this);
         newAppsInfo.setOnClickListener(this);
+        personaliseLayout.setOnClickListener(this);
 
 
-        RecyclerView allAppsRecyclerView = findViewById(R.id.allAppsRecyclerView);
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        allAppsRecyclerView.setLayoutManager(horizontalLayoutManager);
-
-        allAppsAdaptor = new AllAppsAdaptor(this, getInstalledApps(), app -> {
-            Intent intent = getPackageManager().getLaunchIntentForPackage(app.getPackageName());
-            startActivity(intent);
-        });
-        allAppsRecyclerView.setAdapter(allAppsAdaptor);
+        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
+        Fragment allAppsFragment = new AllApps();
+        fragTransaction.add(R.id.allAppsLayout, allAppsFragment , "allAppsFragment");
+        fragTransaction.commit();
 
     }
 
@@ -105,7 +106,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (appName.toLowerCase().contains("play store")) {
                     playStoreApp = appObject;
                 }
-                //allAppsAdaptor.notifyDataSetChanged();
             }
         }
 
@@ -161,6 +161,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     view.setVisibility(View.GONE);
                 }
+                break;
+
+            case R.id.personaliseLayout:
+                DialogFragment dialogFragment = new Personalise_Fragment();
+                dialogFragment.show(getSupportFragmentManager(),null);
+                Log.e("dialog","dialogHome");
+
                 break;
             default:
                 // code block

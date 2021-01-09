@@ -2,7 +2,7 @@ package app.kathenas.launcher;
 
 import android.graphics.drawable.Drawable;
 
-public class AppObject {
+public class AppObject implements Comparable<AppObject> {
     private String appName,packageName;
     private Drawable appImage;
 
@@ -24,4 +24,9 @@ public class AppObject {
         return appImage;
     }
 
+
+    @Override
+    public int compareTo(AppObject app) {
+        return this.appName.toLowerCase().compareTo(app.appName.toLowerCase());
+    }
 }

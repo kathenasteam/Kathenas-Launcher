@@ -7,11 +7,8 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-
 import app.kathenas.launcher.AppObject;
 import app.kathenas.launcher.R;
 
