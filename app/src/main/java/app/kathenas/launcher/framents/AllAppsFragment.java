@@ -17,7 +17,7 @@ import app.kathenas.launcher.AppObject;
 import app.kathenas.launcher.R;
 import app.kathenas.launcher.adaptors.AllAppsAdaptor;
 
-public class AllApps extends Fragment {
+public class AllAppsFragment extends Fragment {
 
     private AllAppsAdaptor allAppsAdaptor;
     @Override

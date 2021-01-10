@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".framents.AllApps">
+    tools:context=".framents.AllAppsFragment">
 
     <TextView
         android:id="@+id/textView4"

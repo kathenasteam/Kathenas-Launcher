@@ -5,7 +5,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.app.SearchManager;
@@ -23,16 +22,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import app.kathenas.launcher.adaptors.AllAppsAdaptor;
-import app.kathenas.launcher.framents.AllApps;
+import app.kathenas.launcher.framents.AllAppsFragment;
 import app.kathenas.launcher.framents.Personalise_Fragment;
-
 import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 import static android.app.AppOpsManager.MODE_ALLOWED;
 import static android.app.AppOpsManager.OPSTR_GET_USAGE_STATS;
@@ -40,7 +36,6 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private AllAppsAdaptor allAppsAdaptor;
     AppObject weatherApp;
     AppObject calenderApp;
     AppObject playStoreApp;
@@ -75,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
         FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
-        Fragment allAppsFragment = new AllApps();
+        Fragment allAppsFragment = new AllAppsFragment();
         fragTransaction.add(R.id.allAppsLayout, allAppsFragment , "allAppsFragment");
         fragTransaction.commit();
 
@@ -120,8 +115,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             Log.e("recent AppInfo", app.getPackageName());
 
             // String packageName = appProcessInfo.importanceReasonComponent.getPackageName();
-
-
             // Log.e("recent AppInfo", packageName);
         }
     }
