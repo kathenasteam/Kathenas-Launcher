@@ -1,7 +1,7 @@
 ## Kathenas Launcher
 ##### Simplest Android Launcher
 
-####How to run the launcher
+*How to run the launcher*
 ```
 $git clone <url>
 
