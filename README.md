@@ -1,17 +1,21 @@
-<h2>Kathenas Launcher</h2>
-<p>Simplest Android Launcher</p>
+##Kathenas Launcher
+#####Simplest Android Launcher
 
-<h4>How to run the launcher</h4>
+####How to run the launcher
 ```
 $git clone <url>
+
 ```
-<p>Run the project in Android studio</p>
+Run the project in Android studio
 ```
-build the app
-run in amulator or android phone
+    build the app
+    run in amulator or android phone
+
 ```
-<h4>Fork the project and contribute</h4>
-<p>Push to your git forked repo in <strong>feature branch</strong></p>
+
+####Fork the project and contribute
+Push to your git forked repo in <strong>feature branch</strong>
 ```
-$git checkout -b feature-<yourname>
+    $git checkout -b feature-<yourname>
+
 ```
